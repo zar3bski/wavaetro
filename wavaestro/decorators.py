@@ -12,7 +12,7 @@ def cached(path: str):
     decorated function
     """
 
-    def decorator_repeat(func):
+    def decorator_cached(func):
         @wraps(func)
         def wrapper_cached(*args, **kwargs):
             if os.path.isfile(f"{path}.pickle"):
@@ -26,4 +26,4 @@ def cached(path: str):
 
         return wrapper_cached
 
-    return decorator_repeat
+    return decorator_cached

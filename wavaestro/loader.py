@@ -25,8 +25,10 @@ def load_initial_dataset(path: str) -> DataFrame:
 
         sampling_frequency, signal = scipy.io.wavfile.read(wave_file)
 
-        _, haar = pywt.dwt(data=signal, wavelet="haar")
-        _, bior39 = pywt.dwt(data=signal, wavelet="bior3.9")
+        _, db1 = pywt.dwt(signal, "db1", axis=0)
+        _, bior13 = pywt.dwt(signal, "bior1.3", axis=0)
+        _, bior37 = pywt.dwt(signal, "bior3.7", axis=0)
+        _, sym13 = pywt.dwt(signal, "sym13", axis=0)
 
         line = {
             "year": match(r".*\/(\d{4})\/.*", wave_file).group(1),
@@ -34,8 +36,10 @@ def load_initial_dataset(path: str) -> DataFrame:
             "mid": mid,
             "sampling_frequency": sampling_frequency,
             "signal": signal,
-            "haar": haar,
-            "bior39": bior39,
+            "db1": db1,
+            "bior13": bior13,
+            "bior37": bior37,
+            "sym13": sym13,
         }
         lines.append(line)
 
