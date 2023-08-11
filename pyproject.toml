@@ -16,6 +16,8 @@ pywavelets = "^1.4.1"
 mido = "^1.2.10"
 scipy = "^1.11.1"
 matplotlib = "^3.7.1"
+torch = "^2.0.1"
+torchaudio = "^2.0.2"
 
 
 [tool.poetry.group.dev.dependencies]

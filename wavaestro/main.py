@@ -6,7 +6,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 def main():
-    df = load_initial_dataset("data/maestro-v3.0.0/2004")
+    df = load_initial_dataset(path="data/maestro-v3.0.0/2004", wavelet_name="db1")
 
 
 if __name__ == "__main__":
