@@ -22,6 +22,10 @@ def load_initial_dataset(path: str, wavelet_name: str) -> DataFrame:
             f"{base_file}.midi",
             clip=True,
         )
+        notes = 0
+        for note in mid:
+            if note.type == "note_on":
+                notes += 1
 
         sampling_frequency, signal = scipy.io.wavfile.read(wave_file)
 
@@ -31,10 +35,12 @@ def load_initial_dataset(path: str, wavelet_name: str) -> DataFrame:
             "year": match(r".*\/(\d{4})\/.*", wave_file).group(1),
             "ticks_per_beat": mid.ticks_per_beat,
             "mid": mid,
+            "notes": notes,
             "sampling_frequency": sampling_frequency,
             f"{wavelet_name}": detail,
         }
         lines.append(line)
 
     df = DataFrame(lines)
+
     return df
